@@ -4,12 +4,34 @@
 	<title>AJAX promises</title>
 </head>
 <body>
-	<p>
+	<p id="result">
 		AJAX promises
 	</p>
 
 <script>
-	var XMLHttp = XMLHttpRequest();
+	document.getElementById("result").onclick = function() {
+		var XMLHttp = new XMLHttpRequest();
+		XMLHttp.open('GET', 'package.json', true);
+
+		XMLHttp.onreadystatechange = function() {
+			// onreadystatechange активируется при получении ответа сервера
+
+			if (XMLHttp.readyState == 4) {
+				// если запрос закончил выполняться
+
+				console.log("statustext=",XMLHttp.statusText);
+
+				if(XMLHttp.status == 200) {
+					// если статус 200 (ОК) - выдать ответ пользователю
+					console.log("XMLHttp=",XMLHttp.responseText);
+
+				}
+				// тут можно добавить else с обработкой ошибок запроса
+			}
+		}
+
+		XMLHttp.send();
+	}
 
 </script>
 </body>
