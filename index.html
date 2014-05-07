@@ -4,35 +4,37 @@
 	<title>AJAX promises</title>
 </head>
 <body>
-	<p id="result">
-		AJAX promises
-	</p>
+
+	<h2 id="test">AJAX promises</h2>
+	<div id="result"></div>
 
 <script>
-	document.getElementById("result").onclick = function() {
+	document.getElementById("test").onclick = function() {
 		var XMLHttp = new XMLHttpRequest();
-		XMLHttp.open('GET', 'package.json', true);
+		XMLHttp.open('GET', 'http://54.72.3.96:3000/techtalks', true);
 
 		XMLHttp.onreadystatechange = function() {
 			// onreadystatechange активируется при получении ответа сервера
 
+			console.log("readyState=",XMLHttp.readyState);
+			console.log("statusText=",XMLHttp.statusText);
+			console.log("status=",XMLHttp.status);
+
 			if (XMLHttp.readyState == 4) {
 				// если запрос закончил выполняться
 
-				console.log("statustext=",XMLHttp.statusText);
-
 				if(XMLHttp.status == 200) {
 					// если статус 200 (ОК) - выдать ответ пользователю
-					console.log("XMLHttp=",XMLHttp.responseText);
+					//console.log("responseText=",XMLHttp.responseText);
+					document.getElementById("result").innerHTML = "XMLHttp=" + XMLHttp.responseText;
 
 				}
 				// тут можно добавить else с обработкой ошибок запроса
 			}
 		}
 
-		XMLHttp.send();
+		XMLHttp.send(null);
 	}
-
 </script>
 </body>
 </html>
