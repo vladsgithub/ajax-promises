@@ -12,6 +12,9 @@
 	document.getElementById("test").onclick = function() {
 		var XMLHttp = new XMLHttpRequest();
 		XMLHttp.open('GET', 'http://54.72.3.96:3000/techtalks', true);
+		//XMLHttp.setRequestHeader('Content-Type', 'text/html;charset=UTF-8');
+		//XMLHttp.setRequestHeader('Content-Type', '');
+		XMLHttp.responseType = "json";
 
 		XMLHttp.onreadystatechange = function() {
 			// onreadystatechange активируется при получении ответа сервера
@@ -26,7 +29,8 @@
 				if(XMLHttp.status == 200) {
 					// если статус 200 (ОК) - выдать ответ пользователю
 					//console.log("responseText=",XMLHttp.responseText);
-					document.getElementById("result").innerHTML = "XMLHttp=" + XMLHttp.responseText;
+					console.log("status=",XMLHttp.response);
+					document.getElementById("result").innerHTML = XMLHttp.response;
 
 				}
 				// тут можно добавить else с обработкой ошибок запроса
@@ -35,6 +39,15 @@
 
 		XMLHttp.send(null);
 	}
+
+	function data(){
+		var as = 5;
+		return as;
+	}
+
+	data().then(function(){
+		console.log(as);
+	})
 </script>
 </body>
 </html>
