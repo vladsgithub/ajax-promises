@@ -5,49 +5,74 @@
 </head>
 <body>
 
-	<h2 id="test">AJAX promises</h2>
-	<div id="result"></div>
+<h2 id="test">AJAX promises</h2>
+<div id="result"></div>
 
 <script>
-	document.getElementById("test").onclick = function() {
-		var XMLHttp = new XMLHttpRequest();
-		XMLHttp.open('GET', 'http://54.72.3.96:3000/techtalks', true);
-		//XMLHttp.setRequestHeader('Content-Type', 'text/html;charset=UTF-8');
-		//XMLHttp.setRequestHeader('Content-Type', '');
-		XMLHttp.responseType = "json";
+	/*
+	 document.getElementById("test").onclick = function() {
+	 var XMLHttp = new XMLHttpRequest();
+	 XMLHttp.open('POST', 'http://proxy/bigcount.ru/robots.txt', true);
 
-		XMLHttp.onreadystatechange = function() {
-			// onreadystatechange активируется при получении ответа сервера
+	 XMLHttp.responseType = "";
+	 //XMLHttp.setRequestHeader('Content-Type', 'text/html;charset=utf-8');
 
-			console.log("readyState=",XMLHttp.readyState);
-			console.log("statusText=",XMLHttp.statusText);
-			console.log("status=",XMLHttp.status);
+	 XMLHttp.onreadystatechange = function() {
+	 // onreadystatechange активируется при получении ответа сервера
 
-			if (XMLHttp.readyState == 4) {
-				// если запрос закончил выполняться
+	 console.log("readyState=",XMLHttp.readyState);
+	 console.log("statusText=",XMLHttp.statusText);
+	 console.log("status=",XMLHttp.status);
 
-				if(XMLHttp.status == 200) {
-					// если статус 200 (ОК) - выдать ответ пользователю
-					//console.log("responseText=",XMLHttp.responseText);
-					console.log("status=",XMLHttp.response);
-					document.getElementById("result").innerHTML = XMLHttp.response;
+	 if (XMLHttp.readyState === 4) {
+	 // если запрос закончил выполняться
 
-				}
-				// тут можно добавить else с обработкой ошибок запроса
-			}
-		}
+	 if(XMLHttp.status === 200) {
+	 // если статус 200 (ОК) - выдать ответ пользователю
+	 console.log("responseText=",XMLHttp.response);
+	 document.getElementById("result").innerHTML = "XMLHttp=" +
+	 XMLHttp.response;
 
-		XMLHttp.send(null);
-	}
+	 }
+	 // тут можно добавить else с обработкой ошибок запроса
+	 }
+	 }
 
-	function data(){
-		var as = 5;
-		return as;
-	}
+	 XMLHttp.send(null);
+	 }
+	 */
 
-	data().then(function(){
-		console.log(as);
-	})
+	var promise = new Promise(function(resolve, reject) {
+		// здесь вытворяй что угодно, если хочешь асинхронно, потом…
+
+		//reject("No!");
+		//resolve("Yes!");
+
+		//arguments[0]("000");
+		//arguments[1]("111");
+		//arguments[2]("222");
+
+		/*
+		 if (false) {
+		 resolve("Working!");
+		 }
+		 else {
+		 //reject(Error("Broken :("));
+		 reject("Broken :(");
+		 }
+		 */
+	});
+
+	//console.log(promise);
+
+
+	promise.then(function(result) {
+		console.log("done");
+		console.log(result); // "Обрабатываем результат!"
+	}, function(err) {
+		console.log("errOR");
+		console.log(err); // Ошибка: "Сломалось"
+	});
 </script>
 </body>
 </html>
